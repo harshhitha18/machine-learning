@@ -1,31 +1,22 @@
 import streamlit as st
 import pandas as pd
 
-st.title("🤖 Machine Learning app")
+st.title("🤖 Machine Learning App")
 
-st.write("This app builds a Machine Learning model")
+st.info("This is app builds a machine learning model!")
 
-with st.expander('Data'):
-    st.write('**Raw data**')
-    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/refs/heads/master/penguins_cleaned.csv')
+with st.expander("Data"):
+    st.write("***Raw data***")
+    df = pd.read_csv("https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv")
     st.write(df)
 
-    # X-axis selection
-    st.write("**Select X-Axis Column**")
-    x_axis = st.selectbox("Choose a column for the X-axis:", options=df.columns, index=2)  # Default to 'bill_length_mm'
-    st.write(f"Selected X-axis: {x_axis}")
+    st.write("***X***")
+    X = df.drop("species", axis=1)
+    st.write(X)
 
-    # Y-axis selection
-    st.write("**Select Y-Axis Column**")
-    y_axis = st.selectbox("Choose a column for the Y-axis:", options=df.columns, index=5)  # Default to 'body_mass_g'
-    st.write(f"Selected Y-axis: {y_axis}")
+    st.write("***y***")
+    y = df["species"]
+    st.write(y)
 
-    # Scatter plot visualization with Plotly
-    if x_axis and y_axis:
-        st.write("**Scatter Plot**")
-        fig = px.scatter(df, x=x_axis, y=y_axis, color="species", title=f"{y_axis} vs {x_axis}")
-        st.plotly_chart(fig)
-
-with st.expander('Data Visualization'):
-    st.write("**Additional Scatter Plot**")
-    st.scatter_chart(data=df, x="bill_length_mm", y="bill_depth_mm", color="species")
+with st.expander("Data Visualization"):
+    st.scatter_chart(data=df, x="bill_length_mm", y="body_mass_g", color="species")
