@@ -46,3 +46,6 @@ input_df = pd.DataFrame(data, index=[0])
 # Concatenate with existing DataFrame X
 input_penguins = pd.concat([input_df, X], axis=0)
         '
+with st.expander("Updated Data with New Input"):
+    st.write("***Input Penguins***")
+    st.write(input_penguins)
